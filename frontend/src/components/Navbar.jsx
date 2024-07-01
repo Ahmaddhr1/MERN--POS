@@ -10,7 +10,7 @@ const Navbar = () => {
     localStorage.setItem("selectedNav", selectedNav);
   }, [selectedNav]);
   return (
-    <nav className="flex items-center justify-between padding">
+    <nav className="flex items-center justify-between padding border-b">
       <div>
         <h1 className="text-2xl font-bold">
           <span className="text-blue-500">Daher</span> For Trading
