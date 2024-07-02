@@ -2,9 +2,12 @@ import React, { useRef } from "react";
 import Input from "../components/Input";
 import axios from "axios";
 import toast  from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate=useNavigate()
   const formRef = useRef(null);
+
   const handleCreate = async(e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -14,14 +17,16 @@ const CreateProduct = () => {
       const dataform = { name, price, quantity };
       const response = await axios.post(`${import.meta.env.VITE_URL}products`, dataform);
       toast.success(response.data);
+      navigate('/products')
       formRef.current.reset();
     } catch (e) {
       console.error(e);
       toast.error("Failed to create product");
     }
   };
+
   return (
-    <section className="section flex flex-col items-center ">
+    <section className="section flex flex-col items-center w-full ">
       <h1 className="text-2xl font-bold mb-2">Create New Product</h1>
       <form
         ref={formRef}
@@ -38,6 +43,7 @@ const CreateProduct = () => {
             id="quantity"
             name="quantity"
             label="Quantity:"
+            step="1"
           />
         </div>
         <button type="submit" className="btn-1">

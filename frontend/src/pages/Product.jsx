@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
+
 const Product = () => {
   const [products, setProduts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
   const fetchProdcuts = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_URL}/products`);
       setProduts(response.data);
       setFilteredProducts(response.data);
     } catch (e) {
-      console.error("Error fetching products:", e.message);
+      toast.error("Error fetching products:", e.message);
     }
   };
 
@@ -25,10 +28,11 @@ const Product = () => {
     );
     setFilteredProducts(filtered);
   }, [searchQuery, products]);
+
   return (
-    <section className="section">
-      <div className="flex items-center justify-between bg-gray-100 padding rounded-md mb-3">
-        <h1 className="">Products:{filteredProducts.length}</h1>
+    <section className="section w-full">
+      <div className="flex items-center justify-between bg-gray-100 padding rounded-md mb-3 flex-wrap">
+        <h1 className="mb-2 md:mb-0">Products:{filteredProducts.length}</h1>
         <Link to={"/products/new"} className="btn-1">
           Create Product
         </Link>

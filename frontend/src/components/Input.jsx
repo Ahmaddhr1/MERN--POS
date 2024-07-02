@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ id, name, label, type, className }) => {
+const Input = ({ id, name, label, type, className,value,onChange,step }) => {
   return (
     <div className={`flex gap-1 w-[300px] '${className}`}>
       <label htmlFor={id} className="w-[70px]">
@@ -10,9 +10,11 @@ const Input = ({ id, name, label, type, className }) => {
         type={type}
         id={id}
         name={name}
+        value={value}
+        onChange={onChange}
         required
         min="0"
-        step="any"
+        step={step}
         className={`border border-gray-950 outline-none px-1`}
       />
     </div>
