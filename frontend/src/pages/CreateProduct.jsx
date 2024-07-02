@@ -1,27 +1,30 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Input from "../components/Input";
 import axios from "axios";
 import toast  from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import BarLoader from "react-spinners/BarLoader";
 
 const CreateProduct = () => {
   const navigate=useNavigate()
   const formRef = useRef(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleCreate = async(e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const price = e.target.price.value;
     const quantity = e.target.quantity.value;
     try {
+      setIsLoading(true);
       const dataform = { name, price, quantity };
       const response = await axios.post(`${import.meta.env.VITE_URL}products`, dataform);
       toast.success(response.data);
       navigate('/products')
       formRef.current.reset();
+      setIsLoading(false);
     } catch (e) {
-      console.error(e);
       toast.error("Failed to create product");
+      setIsLoading(false);
     }
   };
 
@@ -47,7 +50,9 @@ const CreateProduct = () => {
           />
         </div>
         <button type="submit" className="btn-1">
-          Create
+          {
+            isLoading? <BarLoader color="#ffffff" width={50} height={5} /> : "Create"
+          }
         </button>
       </form>
     </section>

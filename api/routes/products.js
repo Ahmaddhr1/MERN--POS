@@ -40,7 +40,6 @@ router.put("/products/:id", async (req, res) => {
       id,
       { name, price, quantity}
     );
-    console.log(updatedProduct)
     return res.json("Product Updated!");
   } catch (e) {
     return res.status(500).json({ message: e.message });
