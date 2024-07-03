@@ -8,6 +8,8 @@ import User from "./pages/clients/User";
 import CreateUser from "./pages/clients/CreateUser";
 import UserDetails from "./pages/clients/UserDetails";
 import EditUser from "./pages/clients/EditUser";
+import CreateOrder from "./pages/order/CreateOrder";
+
 function App() {
   return (
     <Router>
@@ -23,6 +25,7 @@ function App() {
         <Route path="/users/new" element={<CreateUser />} />
         <Route path="/users/:id" element={<UserDetails />} />
         <Route path="/users/:id/edit" element={<EditUser />} />
+        <Route path="/users/:id/makeorder" element={<CreateOrder />} />
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>
     </Router>
