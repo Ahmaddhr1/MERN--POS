@@ -4,6 +4,7 @@ import Products from "./pages/Product";
 import CreateProduct from "./pages/CreateProduct";
 import ProductDetails from "./pages/ProductDetails";
 import EditProducts from "./pages/EditProducts";
+import User from "./pages/User";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<h1>Dashboard</h1>} />
-        <Route path="/users" element={<h1>Users</h1>} />
+        <Route path="/users" element={ <User/> } />
         <Route path="/products" element={<Products/>} />
         <Route path="/orders" element={<h1>Orders</h1>} />
         <Route path="/products/new" element={<CreateProduct/>} />

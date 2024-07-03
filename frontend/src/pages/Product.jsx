@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import BarLoader from "react-spinners/BarLoader";
+import Header from "../components/Header";
 
 const Product = () => {
   const [products, setProduts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  
   const fetchProdcuts = async () => {
     try {
       setIsLoading(true);
@@ -35,12 +38,12 @@ const Product = () => {
 
   return (
     <section className="section w-full">
-      <div className="flex items-center justify-between bg-gray-100 padding rounded-md mb-3 flex-wrap">
-        <h1 className="mb-2 md:mb-0">Products:{filteredProducts.length}</h1>
-        <Link to={"/products/new"} className="btn-1">
-          Create Product
-        </Link>
-      </div>
+      <Header
+        title={"Products"}
+        titleArr={filteredProducts.length}
+        btnText={"Create Product"}
+        link={"/products/new"}
+      />
       <div>
         {isLoading ? (
           <div className="w-[300px] h-[100px] flex items-center justify-center">

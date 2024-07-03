@@ -4,6 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const ProductRoutes =require("./routes/products")
 const cors = require("cors");
+const UserRoutes =require("./routes/users")
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_CONNECTION);
@@ -13,6 +14,7 @@ app.use(express.json());
 
 // Routes
 app.use('', ProductRoutes)
+app.use('',UserRoutes)
 
 app.get("/", (req, res) => {
     res.send("Hello , World!");
