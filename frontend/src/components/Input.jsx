@@ -2,8 +2,8 @@ import React from "react";
 
 const Input = ({ id, name, label, type, className,value,onChange,step }) => {
   return (
-    <div className={`flex gap-1 w-[300px] '${className}`}>
-      <label htmlFor={id} className="w-[70px]">
+    <div className={`flex gap-1 md:w-[400px] w-full '${className}`}>
+      <label htmlFor={id} className="md:w-fit w-[120px]">
         {label}
       </label>
       <input

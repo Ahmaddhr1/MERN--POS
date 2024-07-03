@@ -64,7 +64,7 @@ const Product = () => {
             ) : (
               filteredProducts.map((product, index) => (
                 <div key={index} className="flex items-center gap-3 mb-2">
-                  <Link to={`/products/${product._id}`}>{product.name}</Link>
+                  <Link to={`/products/${product._id}`}><span className="font-semibold">{index + 1}. {product.name} </span> - <span className="text-gray-700">{product.quantity} pieces</span></Link>
                 </div>
               ))
             )}

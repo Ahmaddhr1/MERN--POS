@@ -39,6 +39,12 @@ const EditProducts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!product.name) return toast.error("Name is required");
+    if (!product.price) return toast.error("Price is required");
+    if (!product.quantity) {
+      toast.error("Quantity is required ");
+    }
+    
     try {
       setIsLoading(true);
       const response = await axios.put(
@@ -62,7 +68,7 @@ const EditProducts = () => {
     <div className="section flex flex-col gap-3 w-full ">
       <div>
         <h1 className="headerSection">Edit {product.name}</h1>
-        <form action="" className="flex flex-col gap-3 w-full ">
+        <form  className="flex flex-col gap-3 w-full ">
           <Input
             type="text"
             id="name"
@@ -70,7 +76,6 @@ const EditProducts = () => {
             value={product.name}
             onChange={handleChange}
             required
-            className="input"
             label="Name :"
           />
           <div className="flex gap-3 w-full flex-wrap">
@@ -81,8 +86,8 @@ const EditProducts = () => {
               value={product.price}
               onChange={handleChange}
               required
-              className="input"
               label="Price :"
+              step={0.01}
             />
             <Input
               type="number"
@@ -91,17 +96,11 @@ const EditProducts = () => {
               value={product.quantity}
               onChange={handleChange}
               required
-              className="input"
               label="Quantity:"
-              step="1"
+              step={1}
             />
           </div>
-          <button
-            type="submit"
-            className="btn-1"
-            onClick={handleSubmit}
-            disabled={!product.name || !product.price || !product.quantity}
-          >
+          <button type="submit" className="btn-1" onClick={handleSubmit}>
             {isLoading ? (
               <BarLoader color="#ffffff" width={50} height={5} />
             ) : (
