@@ -47,10 +47,10 @@ const UserDetails = () => {
         </h1>
         <div>
           <h1 className="text-lg text-gray-800">Personal Info:</h1>
-          <p>
+          <a  target="_blank" href={`https://wa.me/${user.phoneNumber}`}>
             <span className="font-semibold">Phone Number:</span>
             {user.phoneNumber && user.phoneNumber}
-          </p>
+          </a>
           <p>
             <span className="font-semibold">Location: </span>
             {user.location && user.location}
